@@ -18,6 +18,6 @@ The whole frontend is poorly developed. The goal was to test out Solidity and le
 ## Deployment  
 
 Run:
-1. `testrpc` to start test network
-2. `truffle migrate` to deploy contracts
-3. `truffle serve` to run test server
+1. `testrpc` to start test network  
+2. `truffle migrate` to deploy contracts  
+3. `truffle serve` to run test server  
