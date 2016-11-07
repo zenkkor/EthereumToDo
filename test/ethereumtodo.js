@@ -1,7 +1,13 @@
 /**
- * Test for the simple wallet
+ * Test for the To Do list
  */
 
 contract('ToDoList', function(accounts) {
+
+
+	/**
+	 * TODO - add tests!
+	 */
+
 
 });
