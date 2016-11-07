@@ -1,7 +1,7 @@
 <h1>Ethereum To Do List</h1>
 
 <form class="form form-inline" ng-submit="addItem(item)">
-	<input type="text" class="form-group" ng-model="item">
+	<input type="text" class="form-group" ng-model="item" placeholder="Your Todo Item">
 	<button type="submit" name="button" class="btn btn-default btn-lg">Add Item</button>
 </form>
 
@@ -12,6 +12,7 @@
 		<label class="control control--checkbox">{{item.name}}
 		   <input type="checkbox" name="todo_item" ng-change="changedState(item, $index)" ng-model="item.state">
 			<div class="control__indicator"></div>
+	 	   <a href="" class="text-danger delete-icon" ng-click="removeItem($index)">x</a>
 	   </label>
 	</li>
 </ul>

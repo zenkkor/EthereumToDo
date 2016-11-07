@@ -8,6 +8,7 @@ app.controller("DashboardCtrl", function($scope) {
 	var base_trx_object = {"from": root_account};
 
 	$scope.todoItems = [];
+	$scope.item = "";
 
 	contract.returnNumItems.call().then(function(numItems){
 		var numItems = numItems.toNumber();
@@ -46,7 +47,7 @@ app.controller("DashboardCtrl", function($scope) {
 	}
 
 	/**
-	 * Addds an item to the blockchain
+	 * Adds an item to the blockchain
 	 * @param item_name
 	 */
 	$scope.addItem = function(item_name)
@@ -63,10 +64,26 @@ app.controller("DashboardCtrl", function($scope) {
 				};
 
 				$scope.todoItems.push(item);
+
+				// Clear item
+				$scope.item = "";
+
 				$scope.$apply();
 			});
 
 		}
 
+	}
+
+	/**
+	 * Removes item at index
+	 * @param $index Index of element
+	 */
+	$scope.removeItem = function($index) {
+
+		contract.removeItemAtIndex($index, base_trx_object).then(function(success){
+			$scope.todoItems.splice($index, 1);
+			$scope.$apply();
+		});
 	}
 });

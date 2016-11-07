@@ -49,6 +49,14 @@ input:focus {
 	cursor: pointer;
 }
 
+.control .delete-icon{
+	visibility: hidden;
+}
+
+.control:hover .delete-icon{
+	visibility: visible;
+}
+
 .control input {
 	position: absolute;
 	z-index: -1;

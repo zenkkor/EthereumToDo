@@ -64,6 +64,40 @@ contract ToDoList {
 	}
 
 	/**
+	 * Updates item at index and moves all items after that one one index back
+	 * @param index uint
+	 */
+	function removeItemAtIndex(uint index) {
+
+		/*
+		 * TODO - Currently a bad solution! Find a better way to delete
+		 *
+		 * the "delete list_items[msg.sender].ListItems[i]" statement did
+		 * NOT work as expected.
+		 *
+		 */
+
+		if ( (index > num_items) || (index < 0) )
+		{
+			// Do nothing
+		}
+		else
+		{
+			for (uint i = index; i <= (num_items-1); i++) {
+				list_items[msg.sender].ListItems[i] = list_items[msg.sender].ListItems[i+1];
+			}
+
+			num_items--;
+		}
+
+		// Just a failsafe
+		if (num_items <= 0)
+		{
+			num_items = 0;
+		}
+	}
+
+	/**
 	 * Returns the number if items
 	 * @return uint
 	 */
