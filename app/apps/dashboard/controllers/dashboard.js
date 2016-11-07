@@ -3,6 +3,6 @@ var app = angular.module('EthereumToDo');
 
 app.controller("DashboardCtrl", function($scope) {
 
-	var contract = SimpleWallet.deployed();
+	var contract = ToDoList.deployed();
 
 });

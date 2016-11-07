@@ -7,7 +7,7 @@ contract ToDoList {
     /**
      * Constructor
      */
-    function ToDo() {
+    function ToDoList() {
       	owner = msg.sender;
     }
 
