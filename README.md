@@ -11,3 +11,9 @@ If this was a serious project, many more libraries/frameworks/... would be used 
 - ui-router for angular routing  
 - SASS for styles  
 - ...  
+
+
+Run:
+1. `testrpc` to start test network
+2. `truffle migrate` to deploy contracts
+3. `truffle serve` to run test server
