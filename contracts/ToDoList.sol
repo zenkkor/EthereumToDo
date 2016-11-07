@@ -48,10 +48,19 @@ contract ToDoList {
 	function setItemForIndex(uint index, string _name, bool _state) {
 
 		list_items[msg.sender].ListItems[index].name  = _name;
-		list_items[msg.sender].ListItems[index].state = _state;
+		this.setStateForItemAtIndex(index, _state);
 
 		// Increment the number of items counter
 		num_items++;
+	}
+
+	/**
+	 * Sets state for item at index
+	 * @param index uint
+	 * @param _state bool
+	 */
+	function setStateForItemAtIndex(uint index, bool _state) {
+		list_items[msg.sender].ListItems[index].state = _state;
 	}
 
 	/**

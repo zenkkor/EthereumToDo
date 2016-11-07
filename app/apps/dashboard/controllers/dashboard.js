@@ -5,7 +5,7 @@ app.controller("DashboardCtrl", function($scope) {
 
 	var contract 		= ToDoList.deployed();
 	var root_account 	= web3.eth.accounts[0];
-	var base_trx_object =  {"from": root_account};
+	var base_trx_object = {"from": root_account};
 
 	$scope.todoItems = [];
 
@@ -15,8 +15,6 @@ app.controller("DashboardCtrl", function($scope) {
 		for (var i = 0; i < numItems; i++)
 		{
 			contract.getItemForIndex.call(i).then(function(item){
-
-				console.log(item);
 
 				var item = {
 					"name":item[0],
@@ -34,6 +32,20 @@ app.controller("DashboardCtrl", function($scope) {
 	});
 
 	/**
+	 * Changes state for a single item at index
+	 * @param item
+	 * @param $index
+	 */
+	$scope.changedState = function(item, $index) {
+
+		var state = item.state;
+
+		contract.setStateForItemAtIndex($index, state, base_trx_object).then(function(success){
+
+		});
+	}
+
+	/**
 	 * Addds an item to the blockchain
 	 * @param item_name
 	 */
@@ -43,9 +55,7 @@ app.controller("DashboardCtrl", function($scope) {
 		{
 			var item_count = $scope.todoItems.length;
 
-			contract.setItemForIndex(item_count, item_name, false, base_trx_object).then(function(){
-
-
+			contract.setItemForIndex(item_count, item_name, false, base_trx_object).then(function(success){
 
 				var item = {
 					"name": item_name,
@@ -53,7 +63,7 @@ app.controller("DashboardCtrl", function($scope) {
 				};
 
 				$scope.todoItems.push(item);
-
+				$scope.$apply();
 			});
 
 		}
