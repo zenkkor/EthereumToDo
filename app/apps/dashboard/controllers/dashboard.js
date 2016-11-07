@@ -3,27 +3,35 @@ var app = angular.module('EthereumToDo');
 
 app.controller("DashboardCtrl", function($scope) {
 
-	var contract = ToDoList.deployed();
-	var root_account = web3.eth.accounts[0];
+	var contract 		= ToDoList.deployed();
+	var root_account 	= web3.eth.accounts[0];
+	var base_trx_object =  {"from": root_account};
 
-	/*contract.getItemForIndex.call(0).then(function(item){
-		console.log(item);
-	});*/
+	$scope.todoItems = [];
 
-	$scope.todoItems = [
+	contract.returnNumItems.call().then(function(numItems){
+		var numItems = numItems.toNumber();
+
+		for (var i = 0; i < numItems; i++)
 		{
-			"name":"Wash Laundry",
-			"status": false
-		},
-		{
-			"name":"Wash Dishes",
-			"status": true
-		},
-		{
-			"name":"Take Out Trash",
-			"status": false
-		},
-	];
+			contract.getItemForIndex.call(i).then(function(item){
+
+				console.log(item);
+
+				var item = {
+					"name":item[0],
+					"state": item[1]
+				};
+
+				// Push to array
+				$scope.todoItems.push(item);
+				$scope.$apply();
+			});
+		}
+
+		return this;
+
+	});
 
 	/**
 	 * Addds an item to the blockchain
@@ -31,15 +39,17 @@ app.controller("DashboardCtrl", function($scope) {
 	 */
 	$scope.addItem = function(item_name)
 	{
-		if ( item_name != "")
+		if ( !(typeof item_name == 'undefined') && item_name != "")
 		{
 			var item_count = $scope.todoItems.length;
 
-			contract.setItemForIndex(item_count, item_name, false).then(function(){
+			contract.setItemForIndex(item_count, item_name, false, base_trx_object).then(function(){
+
+
 
 				var item = {
 					"name": item_name,
-					"status": false
+					"state": false
 				};
 
 				$scope.todoItems.push(item);
