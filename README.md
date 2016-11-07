@@ -7,11 +7,15 @@ Uses [truffle](https://github.com/ConsenSys/truffle) and [ethereumjs-testrpc](ht
 Run `truffle test` to run mocha tests.
 Run `testrpc` to run the test network.  
 
-If this was a serious project, many more libraries/frameworks/... would be used like:
+For any viewers, let me state that if this was a serious project, many more libraries/frameworks/... would be used like:
 - ui-router for angular routing  
 - SASS for styles  
 - ...  
 
+The whole frontend is poorly developed. The goal was to test out Solidity and learn.  
+
+
+## Deployment  
 
 Run:
 1. `testrpc` to start test network
